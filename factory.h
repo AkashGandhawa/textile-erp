@@ -43,7 +43,7 @@ void display_warehouse();
 // ==========================================
 // 3. Secondary Stock (DLL) - Sasadhara's Part
 // ==========================================
-/*
+
 typedef struct SecondaryStockItem {
     char material_type[30];
     float stock_kg;
@@ -54,7 +54,7 @@ void add_secondary_item(char* mat, float stock);
 void update_secondary_item(char* mat, float new_stock);
 void delete_secondary_item(char* mat);
 void display_secondary();
-*/
+
 
 // ==========================================
 // 4. Production Floor (Array) - Dulaksha's Part
