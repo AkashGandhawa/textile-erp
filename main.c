@@ -150,9 +150,54 @@ void sewing_operator_menu()
 
 void order_dispatch_menu()
 {
-    printf("\n--- Order Dispatch ---\n");
-    // TODO: add order dispatch menu and logic here
-    printf("Space for Prabuddha to add Add/Delete/Update (Sort by priority) logic.\n");
+    int subChoice;
+    printf("\n---Order Dispatch ---\n");
+    printf("1. Add Order\n");
+    printf("2. Update Order\n");
+    printf("3. Delete Order\n");
+    printf("4. Display Order\n");
+    printf("5. Sort by Priority\n");
+    printf("6. Back\n");
+    printf("Choice: ");
+    scanf("%d", &subChoice);
+
+    if (subChoice == 1)
+    {
+        int order_id, receiver_id, priority, item_count;
+        char item_type[30];
+        float price;
+        printf("Enter Order ID, Receiver ID, Priority, Item Type, Item Count, Price: ");
+        scanf("%d %d %d %s %d %f", &order_id, &receiver_id, &priority, item_type, &item_count, &price);
+        add_order(order_id, receiver_id, priority, item_type, item_count, price);
+    }
+    else if (subChoice == 2)
+    {
+        int order_id, receiver_id, priority, item_count;
+        char item_type[30];
+        float price;
+        printf("Enter Order ID, Receiver ID, Priority, Item Type, Item Count, Price: ");
+        scanf("%d %d %d %s %d %f", &order_id, &receiver_id, &priority, item_type, &item_count, &price);
+        update_order(order_id, receiver_id, priority, item_type, item_count, price);
+    }
+    else if (subChoice == 3)
+    {
+        int order_id;
+        printf("Enter Order ID to delete: ");
+        scanf("%d", &order_id);
+        delete_order(order_id);
+    }
+    else if (subChoice == 4)
+    {
+        display_orders();
+    }
+    else if (subChoice == 5)
+    {
+        sort_orders_by_priority();
+    }
+    else if (subChoice == 6)
+    {
+        return;
+    }
 }
 
 void security_menu()
