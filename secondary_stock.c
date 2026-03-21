@@ -107,3 +107,19 @@ void display_secondary()
     }
     printf("========================================\n");
 }
+
+// 5. Count the total number of material types
+void count_secondary_items() {
+    SecondaryStockItem* temp = secondary_head;
+    int count = 0;
+    
+    // Traverse the list and count each node
+    while (temp != NULL) {
+        count++;
+        temp = temp->next;
+    }
+    
+    printf("\n========================================\n");
+    printf("Total Material Types in Stock: %d\n", count);
+    printf("========================================\n");
+}
