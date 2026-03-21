@@ -29,6 +29,7 @@ typedef struct Group {
 } Group;
 
 void initialize_queue(struct Queue* queue);
+Truck* create_truck(int id, int priority, char supplier[], char material[], char date[]);
 bool isEmpty(const struct Queue* queue);
 void enqueue_truck(struct Queue* queue, int id, int priority, char supplier[], char material[], char date[]);
 void dequeue_truck(struct Queue* queue);
