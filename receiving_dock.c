@@ -1,3 +1,10 @@
+#include "factory.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+#include <ctype.h>
+
 void initialize_queue(Queue* queue){
     queue->front = NULL;
     queue->rear = NULL;
@@ -12,9 +19,9 @@ Truck* create_truck(int id, int priority, char supplier[], char material[], char
     }
     newTruck->truck_id = id;
     newTruck->priority = priority;
-    strcpy(newTruck->supplier, supplier);
-    strcpy(newTruck->material_type, material);
-    strcpy(newTruck->date, date);
+    snprintf(newTruck->supplier, sizeof(newTruck->supplier), "%s", supplier);
+    snprintf(newTruck->material_type, sizeof(newTruck->material_type), "%s", material);
+    snprintf(newTruck->date, sizeof(newTruck->date), "%s", date);
     newTruck->next = NULL;
 
     return newTruck;
@@ -73,7 +80,7 @@ void display_dock(const Queue* queue) {
     printf("\n");
 }
 
-void sortByPriority(const Queue* queue) {
+void sortByPriority(Queue* queue) {
     if (isEmpty(queue) || queue->front == queue->rear){
         return;
     }
@@ -113,7 +120,7 @@ void sortByPriority(const Queue* queue) {
 //Supplier: S/s
 //Material: M/m
 void groupBy(const Queue* queue, char type) {
-    if (isEmpty((Queue*)queue)) {
+    if (isEmpty(queue)) {
         printf("Queue is empty.\n");
         return;
     }
@@ -154,7 +161,7 @@ void groupBy(const Queue* queue, char type) {
         }
 
         if (found == -1) {
-            Group *newGroups = realloc(groups, (groupCount + 1) * sizeof(struct Group));
+            Group *newGroups = realloc(groups, (groupCount + 1) * sizeof(Group));
             if (newGroups == NULL) {
                 printf("Group Allocation Failed.\n");
                 goto cleanup;
