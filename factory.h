@@ -142,10 +142,10 @@ struct Order* next;
 }Order;
 
 extern Order* orderhead;
-void AddOrder(int order_id,int receiver_id,int priority,char item_type,int item_count,float price);
-void UpdateOrder(int order_id,int receiver_id,int priority,char item_type,int item_count,float price);
-void DeleteOrder(int order_id);
-void DisplayOrders();
+void add_order(int order_id,int receiver_id,int priority,char item_type,int item_count,float price);
+void update_order(int order_id,int receiver_id,int priority,char item_type,int item_count,float price);
+void delete_order(int order_id);
+void display_orders();
 
 // ==========================================
 // 7. Security (Array) - Yasiru's Part
