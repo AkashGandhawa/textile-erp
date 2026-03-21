@@ -69,9 +69,55 @@ void warehouse_menu()
 
 void secondary_stock_menu()
 {
+    int subChoice;
+    char mat[30];
+    float stock;
+
     printf("\n--- Secondary Stock ---\n");
-    // TODO: add secondary stock menu and logic here
-    printf("Space for Sasadhara to add Add/Delete/Update logic.\n");
+    printf("1. Add Material\n");
+    printf("2. Update Stock\n");
+    printf("3. Delete Material\n");
+    printf("4. Display Inventory\n");
+    printf("5. Count Total Material Types\n");
+    printf("6. Back\n");
+    printf("Choice: ");
+    scanf("%d", &subChoice);
+
+    if (subChoice == 1)
+    {
+        printf("Enter Material Type (one word) and Stock(kg): ");
+        scanf("%s %f", mat, &stock);
+        add_secondary_item(mat, stock);
+    }
+    else if (subChoice == 2)
+    {
+        printf("Enter Material Type to Update and New Stock(kg): ");
+        scanf("%s %f", mat, &stock);
+        update_secondary_item(mat, stock);
+    }
+    else if (subChoice == 3)
+    {
+        printf("Enter Material Type to Delete: ");
+        scanf("%s", mat);
+        delete_secondary_item(mat);
+    }
+    else if (subChoice == 4)
+    {
+        display_secondary();
+    }
+    else if (subChoice == 5)
+    {
+        count_secondary_items();
+    }
+    else if (subChoice == 6)
+    {
+        // Explicitly exits the function to go back to the main menu
+        return; 
+    }
+    else
+    {
+        printf("Invalid choice! Returning to main menu...\n");
+    }
 }
 
 
