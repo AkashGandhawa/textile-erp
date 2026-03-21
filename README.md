@@ -9,8 +9,8 @@ Simple program that models a system of an textile manufacturing company to bette
 ## System Overview:
 ### 1. Receiving Dock
 * Data Structure: **Queue**
-* Main Methods: Enqueue, Dequeue
-* Data Elements: `{truck_id, supplier, material_type, date, priority}`
+* Main Methods: isEmpty, Enqueue, Dequeue, Display
+* Data Elements: `{truck_id, priority, supplier, material_type, date}`
 * Sorted by `priority`
 
 ### 2. Main Warehouse
