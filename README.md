@@ -15,12 +15,12 @@ Simple program that models a system of an textile manufacturing company to bette
 ### 2. Main Warehouse
 * Data Structure: **Doubly Linked List**
 * Data Elements: `{slot_no, material_type, stock_kg}`
-* Special Task: *add task*
+* Special Task: Sorted by `slot_no`, `material_type`, or `stock_kg`
 
 ### 3. Secondary Stock
 * Data Structure: **Doubly Linked List**
 * Data Elements: `{material_type, stock_kg}`
-* Special Task: *add task*
+* Special Task: Total of `stock_kg` counted
 
 ### 4. Production Floor
 * Data Structure: **Array**
