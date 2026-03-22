@@ -80,6 +80,7 @@ void update_secondary_item(char *mat, float new_stock);
 void delete_secondary_item(char *mat);
 void display_secondary();
 void count_secondary_items();
+void find_max_min_stock();
 
 // ==========================================
 // 4. Production Floor (Array) - Dulaksha
