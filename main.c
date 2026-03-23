@@ -439,63 +439,41 @@ void order_dispatch_menu()
 void security_menu()
 {
     printf("\n--- Security ---\n");
-    Guard guard_roster[20];
-    int current_guard_count = 0;
-    int choice;
-    int id_input;
+    Guard guard[20];
+    int input = 0;
+    int size = 0;
+
     while (1)
     {
-        printf("1. Register New Guard\n");
-        printf("2. Update Guard Details\n");
-        printf("3. Delete a Guard\n");
-        printf("4. View All Guards\n");
-        printf("5. Back\n");
-        printf("----------------------------------------\n");
-        printf("Enter choice: ");
+        printf("You're in security panel. What do you want to do?\n");
+        printf("Enter details of a new guard -> 1\n");
+        printf("Update guard details -> 2\n");
+        printf("Delete a guard -> 3\n");
+        printf("View all guard details -> 4\n");
+        printf("Exit -> -1\n");
+        scanf("%d", &input);
 
-        if (scanf("%d", &choice) != 1)
-        {
-            printf("[!] Invalid input. Please enter a number.\n");
-            clear_input();
-            continue;
-        }
-
-        switch (choice)
+        switch (input)
         {
         case 1:
-            if (current_guard_count >= 20)
-            {
-                printf("[!] Roster full! Cannot add more guards.\n");
-            }
-            else
-            {
-                add_guard(guard_roster, &current_guard_count);
-            }
+            add_guard(guard, &size);
             break;
         case 2:
-            update_guard(guard_roster, current_guard_count);
+            update_guard(guard, size);
             break;
         case 3:
             printf("Enter guard ID to delete: ");
-            if (scanf("%d", &id_input) == 1)
-            {
-                delete_guard(guard_roster, &current_guard_count, id_input);
-            }
-            else
-            {
-                printf("[!] Invalid ID format.\n");
-                clear_input();
-            }
+            scanf("%d", &input);
+            delete_guard(guard, &size, input);
             break;
         case 4:
-            display_guard(guard_roster, current_guard_count);
+            display_guard(guard, size);
             break;
-        case 5:
-            printf("Logging out of Security Panel. Goodbye!\n");
-            exit(0);
+        case -1:
+            return; // exit the function
         default:
-            printf("[!] Invalid selection. Please try again.\n");
-            _sleep(500); // Small pause so the user sees the error
+            printf("Invalid input. Please try again.\n");
+            Sleep(500);
             break;
         }
     }
