@@ -6,7 +6,7 @@
 // --- Menu Functions ---
 void show_menu()
 {
-    printf("\n--- Garment Factory Management System (Group Project) ---\n");
+    printf("\n--- TextileERP: Garment Factory Management System ---\n");
     printf("1. Receiving Dock\n");
     printf("2. Main Warehouse\n");
     printf("3. Secondary Stock\n");
