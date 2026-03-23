@@ -9,11 +9,11 @@ void show_menu()
     printf("\n--- Garment Factory Management System (Group Project) ---\n");
     printf("1. Receiving Dock\n");
     printf("2. Main Warehouse\n");
-    printf("3. Secondary Stock (Sasadhara - Doubly Linked List)\n");
-    printf("4. Production Floor (Dulaksha - Array)\n");
-    printf("5. Sewing Operator (Akash - Linked List)\n");
-    printf("6. Order Dispatch (Prabuddha - Linked List)\n");
-    printf("7. Security (Yasiru - Array)\n");
+    printf("3. Secondary Stock\n");
+    printf("4. Production Floor\n");
+    printf("5. Sewing Operator\n");
+    printf("6. Order Dispatch\n");
+    printf("7. Security\n");
     printf("0. Exit\n");
 }
 
@@ -29,11 +29,79 @@ void clear_input()
 void receiving_dock_menu()
 {
     printf("\n--- Receiving Dock ---\n");
-    // TODO: add receiving dock menu and logic here
-    printf("Space for Themiya to add Enqueue/Dequeue logic.\n");
-    // Example call: enqueue_truck(...);
+    Queue dockQueue;
+    initialize_queue(&dockQueue);
+    int subChoice;
+    int id, priority;
+    char supplier[50], material[30], date[20], groupType;
+    while (1)
+    { // Added a loop so the user stays in the menu until they choose 'Back'
+        printf("1. Register New Truck (Enqueue)\n");
+        printf("2. Release Next Truck (Dequeue)\n");
+        printf("3. Display All Trucks in Dock\n");
+        printf("4. Sort Queue by Priority\n");
+        printf("5. Group Trucks (by Priority, Supplier, or Material)\n");
+        printf("6. Exit\n");
+        printf("Enter choice: ");
+
+        if (scanf("%d", &subChoice) != 1)
+        {
+            clear_input();
+            continue;
+        }
+
+        switch (subChoice)
+        {
+        case 1:
+            printf("Enter Truck ID: ");
+            scanf("%d", &id);
+            printf("Enter Priority (1-high, 10-low): ");
+            scanf("%d", &priority);
+            clear_input(); // Clear before strings
+
+            printf("Enter Supplier: ");
+            fgets(supplier, sizeof(supplier), stdin);
+            supplier[strcspn(supplier, "\n")] = 0; // Remove newline
+
+            printf("Enter Material Type: ");
+            fgets(material, sizeof(material), stdin);
+            material[strcspn(material, "\n")] = 0;
+
+            printf("Enter Date (DD/MM/YYYY): ");
+            fgets(date, sizeof(date), stdin);
+            date[strcspn(date, "\n")] = 0;
+
+            enqueue_truck(&dockQueue, id, priority, supplier, material, date);
+            printf("Truck registered successfully!\n");
+            break;
+        case 2:
+            printf("Processing truck at the front of the queue...\n");
+            dequeue_truck(&dockQueue);
+            break;
+        case 3:
+            printf("--- Current Dock Queue ---\n");
+            display_dock(&dockQueue);
+            break;
+        case 4:
+            printf("Sorting queue by priority (Bubble Sort)... \n");
+            sortByPriority(&dockQueue);
+            printf("Queue sorted.\n");
+            display_dock(&dockQueue);
+            break;
+        case 5:
+            printf("Group by Priority: ");
+            clear_input();
+            scanf("%c", &groupType);
+            groupBy(&dockQueue, groupType);
+            break;
+        case 6:
+            return; // Exit back to main menu
+        default:
+            printf("Invalid choice.\n");
+            break;
+        }
+    }
 }
-// TODO: To be completed by Themiya
 
 // 2. Main Warehouse (DLL) - Anushka
 void warehouse_menu()
@@ -368,32 +436,9 @@ void order_dispatch_menu()
 }
 
 // 7. Security (Array) - Yasiru
-void delete_guard(Guard guard[], int *size, int id)
+void security_menu()
 {
-    int idx = -1;
-    for (int i = 0; i < *size; i++)
-    {
-        if (guard[i].guard_id == id)
-        {
-            idx = i;
-            break;
-        }
-    }
-    if (idx < 0)
-    {
-        printf("Guard with ID %d not found.\n", id);
-        return;
-    }
-    for (int j = idx; j < *size - 1; j++)
-    {
-        guard[j] = guard[j + 1];
-    }
-    (*size)--;
-    printf("Guard with ID %d deleted.\n", id);
-}
-
-void guard(void)
-{
+    printf("\n--- Security ---\n");
     Guard guard[20];
     int input = 0;
     int size = 0;
@@ -434,96 +479,6 @@ void guard(void)
     }
 }
 
-// Function to add a new guard
-void add_guard(Guard guard[], int *size)
-{
-    printf("Enter guard ID: ");
-    scanf("%d", &guard[*size].guard_id);
-    clear_input_buffer();
-    printf("Enter active status (0-> not active, 1-> active): ");
-    scanf("%d", (int *)&guard[*size].is_active);
-    printf("Enter the patrol point: ");
-    scanf("%29s", guard[*size].patrol_point);
-    clear_input_buffer();
-    printf("Enter the shift time: ");
-    scanf("%5s", guard[*size].shift);
-    clear_input_buffer();
-    (*size)++;
-    printf("Guard details saved successfully.\n");
-}
-
-// Function to update an existing guard
-void update_guard(Guard guard[], int size)
-{
-    int input;
-    printf("Enter the guard ID to update: ");
-    scanf("%d", &input);
-    for (int i = 0; i < size; i++)
-    {
-        if (guard[i].guard_id == input)
-        {
-            int field = 0;
-            printf("Update which detail?\n");
-            printf("1 - active status\n");
-            printf("2 - patrol point\n");
-            printf("3 - shift time\n");
-            printf("4 - all\n");
-            scanf("%d", &field);
-            switch (field)
-            {
-            case 1:
-                printf("Enter new active status (0->not active, 1->active): ");
-                scanf("%d", (int *)&guard[i].is_active);
-                break;
-            case 2:
-                printf("Enter new patrol point: ");
-                scanf("%29s", guard[i].patrol_point);
-                break;
-            case 3:
-                printf("Enter new shift time: ");
-                scanf("%5s", guard[i].shift);
-                break;
-            case 4:
-                printf("Enter new active status (0->not active, 1->active): ");
-                scanf("%d", (int *)&guard[i].is_active);
-                printf("Enter new patrol point: ");
-                scanf("%29s", guard[i].patrol_point);
-                clear_input_buffer();
-                printf("Enter new shift time: ");
-                scanf("%5s", guard[i].shift);
-                clear_input_buffer();
-                break;
-            default:
-                printf("Invalid choice.\n");
-                break;
-            }
-            printf("Guard details updated successfully.\n");
-            return; // Exit after updating
-        }
-    }
-    printf("Guard with ID %d not found.\n", input); // If not found
-}
-
-// Function to display all guards
-void display_guard(Guard guard[], int size)
-{
-    if (size == 0)
-    {
-        printf("No guards registered yet.\n");
-    }
-    else
-    {
-        printf("Guard details:\n");
-        for (int i = 0; i < size; i++)
-        {
-            printf("ID: %d, Active: %s, Patrol: %s, Shift: %s\n",
-                   guard[i].guard_id,
-                   guard[i].is_active ? "Yes" : "No",
-                   guard[i].patrol_point,
-                   guard[i].shift);
-        }
-    }
-}
 // --- Main ---
 int main()
 {
@@ -560,7 +515,7 @@ int main()
             order_dispatch_menu();
             break;
         case 7:
-            guard();
+            security_menu();
             break;
         case 0:
             printf("Exiting system...\n");
