@@ -456,7 +456,7 @@ void security_menu()
 
     while (1)
     {
-        printf("\nYou're in security panel. What do you want to do?\n");
+        printf("\nYou're in the security panel. What do you want to do?\n");
         printf("1. Add details of a new guard\n");
         printf("2. Update details of an existing guard\n");
         printf("3. Delete a guard\n");

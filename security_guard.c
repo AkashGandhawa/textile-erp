@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include <windows.h>
 #include "factory.h"
 
 void delete_guard(Guard guard[], int *size, int id)

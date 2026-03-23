@@ -154,7 +154,7 @@ void display_orders();
 void sort_orders_by_priority();
 
 // ==========================================
-// 7. Security (Array) - Yasiru's Part
+// 7. Security (Array) - Yasiru
 // ==========================================
 
 #define MAX_GUARDS 50
