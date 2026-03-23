@@ -44,13 +44,18 @@ Simple program that models a system of an textile manufacturing company to bette
 
 ## 👨‍💻 Commands to compile and run:
 
-`mkdir bin`
-
-`gcc main.c order_dispatch.c production_floor.c receiving_dock.c secondary_stock.c security_guard.c sewing_operator.c warehouse.c -o bin/textile_erp`
-
-`cd bin`
-
-`textile-erp`
+```bash
+mkdir bin
+```
+```bash
+gcc main.c order_dispatch.c production_floor.c receiving_dock.c secondary_stock.c security_guard.c sewing_operator.c warehouse.c -o bin/textile_erp
+```
+```bash
+cd bin
+```
+```bash
+textile-erp
+```
 
 ## 👥 Team members
 
