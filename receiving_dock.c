@@ -96,6 +96,7 @@ void display_dock(const Queue *queue)
 
 void sortByPriority(Queue *queue)
 {
+    //1 - High Priority, 10 - Low Priority
     if (isEmpty(queue) || queue->front == queue->rear)
     {
         return;
@@ -138,7 +139,7 @@ void sortByPriority(Queue *queue)
 // Priority: P/p
 // Supplier: S/s
 // Material: M/m
-//  Cleanup helper function
+// Cleanup helper function
 void freeGroups(Group *groups, int groupCount)
 {
     if (groups != NULL)

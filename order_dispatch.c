@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include "factory.h"
 
-Order *orderhead = NULL;
+Order *order_head = NULL;
 
 // Function to create a new order with the given order details
-void add_order(int order_id, int receiver_id, int priority, char item_type, int item_count, float price)
+void add_order(int order_id, int receiver_id, int priority, char *item_type, int item_count, float price)
 {
     Order *newOrder = (struct Order *)malloc(sizeof(struct Order));
     if (newOrder == NULL)
@@ -19,8 +19,8 @@ void add_order(int order_id, int receiver_id, int priority, char item_type, int 
     newOrder->item_count = item_count;
     newOrder->price = price;
 
-    newOrder->next = orderhead;
-    orderhead = newOrder;
+    newOrder->next = order_head;
+    order_head = newOrder;
     printf("New Order Added Successfully!\n");
 };
 //    -----------------------------------------------------
@@ -28,20 +28,20 @@ void add_order(int order_id, int receiver_id, int priority, char item_type, int 
 // delete an order from the linked list based on the order_id
 void delete_order(int order_id)
 {
-    if (orderhead == NULL)
+    if (order_head == NULL)
     {
         printf("No orders to delete\n");
     }
-    if (orderhead->order_id == order_id)
+    if (order_head->order_id == order_id)
     {
-        Order *temp = orderhead;
-        orderhead = orderhead->next;
+        Order *temp = order_head;
+        order_head = order_head->next;
         free(temp);
         printf("Order deleted successfully from the first position\n");
         return;
     }
-    Order *current = orderhead->next;
-    Order *previous = orderhead;
+    Order *current = order_head->next;
+    Order *previous = order_head;
 
     while (current != NULL)
     {
@@ -60,9 +60,9 @@ void delete_order(int order_id)
 // -----------------------------------------------------
 
 // update an order in the linked list based on the order_id
-void update_order(int order_id, int receiver_id, int priority, char item_type, int item_count, float price)
+void update_order(int order_id, int receiver_id, int priority, char *item_type, int item_count, float price)
 {
-    Order *current = orderhead;
+    Order *current = order_head;
     while (current != NULL)
     {
         if (current->order_id == order_id)
@@ -84,7 +84,7 @@ void update_order(int order_id, int receiver_id, int priority, char item_type, i
 // display all the orders in the linked list
 void display_orders()
 {
-    struct Order *current = orderhead;
+    struct Order *current = order_head;
     if (current == NULL)
     {
         printf("No orders to display\n");
@@ -101,12 +101,12 @@ void display_orders()
 
 void sort_orders_by_priority()
 {
-    if (orderhead == NULL)
+    if (order_head == NULL)
     {
         printf("No Orders to sort\n");
         return;
     }
-    Order *curr = orderhead;
+    Order *curr = order_head;
     while (curr != NULL)
     {
         Order *next = curr->next;

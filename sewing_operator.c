@@ -3,7 +3,7 @@
 #include <string.h>
 #include "factory.h"
 
-SewingOperator *head = NULL;
+SewingOperator *operator_head = NULL;
 
 // Add new sewing operator to the system (front addition)
 void add_sewing_operator(int operator_id, int machine_id, char *piece_type, int pieces_completed, float salary)
@@ -14,16 +14,16 @@ void add_sewing_operator(int operator_id, int machine_id, char *piece_type, int 
     strcpy(newNode->piece_type, piece_type);
     newNode->pieces_completed = pieces_completed;
     newNode->salary = salary;
-    newNode->next = head;
+    newNode->next = operator_head;
 
-    head = newNode;
+    operator_head = newNode;
     printf("New sewing operator with ID %d successfully added to the system", operator_id);
 }
 
 // Increments the number of pieces completed by the sewing operator with the new record
 void increase_sewing_operator_pieces_completed(int operator_id, int new_pieces_completed)
 {
-    SewingOperator *current = head;
+    SewingOperator *current = operator_head;
     while (current != NULL)
     {
         if (current->operator_id == operator_id)
@@ -45,7 +45,7 @@ void update_sewing_operator_details(int operator_id, int new_machine_id, char *n
     NULL can be used for fields that do not change (excluding operator_id) and
     for new_salary, 0 or negative values can be used to indicate no change.
     */
-    SewingOperator *current = head;
+    SewingOperator *current = operator_head;
     while (current != NULL)
     {
         if (current->operator_id == operator_id)
@@ -73,12 +73,12 @@ void update_sewing_operator_details(int operator_id, int new_machine_id, char *n
 // Delete a sewing operator from the system
 void delete_sewing_operator(int operator_id)
 {
-    SewingOperator *current = head;
+    SewingOperator *current = operator_head;
     while (current != NULL)
     {
         if (current->operator_id == operator_id)
         {
-            head = current->next;
+            operator_head = current->next;
             free(current);
             printf("The sewing operator with ID %d successfully deleted from the system", operator_id);
             return;
@@ -91,7 +91,7 @@ void delete_sewing_operator(int operator_id)
 // Display all the sewing operators in the system
 void display_sewing_operators()
 {
-    SewingOperator *current = head;
+    SewingOperator *current = operator_head;
     if (current == NULL)
     {
         printf("No sewing operators in the system");
@@ -111,12 +111,12 @@ void display_sewing_operators()
 // Sort sewing operators by the number of pieces completed in descending order
 void sort_sewing_operators_by_completed()
 {
-    if (head == NULL || head->next == NULL)
+    if (operator_head == NULL || operator_head->next == NULL)
     {
         return; // No need to sort if the list is empty or has only one operator
     }
     SewingOperator *sorted = NULL; // New sorted list
-    SewingOperator *current = head;
+    SewingOperator *current = operator_head;
     while (current != NULL)
     {
         SewingOperator *next = current->next; // Store next operator
@@ -138,6 +138,6 @@ void sort_sewing_operators_by_completed()
         }
         current = next; // Move to the next operator
     }
-    head = sorted; // Update head to the new sorted list
+    operator_head = sorted; // Update operator_head to the new sorted list
     printf("Sewing operators successfully sorted by pieces completed in descending order");
 }

@@ -117,7 +117,7 @@ typedef struct SewingOperator
     struct SewingOperator *next;
 } SewingOperator;
 
-extern SewingOperator *head;
+extern SewingOperator *operator_head;
 
 void add_sewing_operator(int operator_id, int machine_id, char *piece_type, int pieces_completed, float salary);
 void increase_sewing_operator_pieces_completed(int operator_id, int new_pieces_completed);
@@ -140,17 +140,18 @@ typedef struct Order
     int order_id;
     int receiver_id;
     int priority;
-    char item_type;
+    char *item_type;
     int item_count;
     float price;
     struct Order *next;
 } Order;
 
-extern Order *orderhead;
-void add_order(int order_id, int receiver_id, int priority, char item_type, int item_count, float price);
-void update_order(int order_id, int receiver_id, int priority, char item_type, int item_count, float price);
+extern Order *order_head;
+void add_order(int order_id, int receiver_id, int priority, char *item_type, int item_count, float price);
+void update_order(int order_id, int receiver_id, int priority, char *item_type, int item_count, float price);
 void delete_order(int order_id);
 void display_orders();
+void sort_orders_by_priority();
 
 // ==========================================
 // 7. Security (Array) - Yasiru's Part
@@ -169,5 +170,10 @@ void add_guard(Guard guard[], int *size);
 void update_guard(Guard guard[], int size);
 void delete_guard(Guard guard[], int *size, int id);
 void display_guard(Guard guard[], int size);
+
+// ==========================================
+// Other functions
+// ==========================================
+void clear_input();
 
 #endif

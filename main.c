@@ -3,10 +3,19 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*
+Commands to compile and run:
+
+mkdir bin
+gcc main.c order_dispatch.c production_floor.c receiving_dock.c secondary_stock.c security_guard.c sewing_operator.c warehouse.c -o bin/textile_erp
+cd bin
+textile-erp
+*/
+
 // --- Menu Functions ---
 void show_menu()
 {
-    printf("\n--- TextileERP: Garment Factory Management System ---\n");
+    printf("\n\n--- TextileERP: Garment Factory Management System ---\n\n");
     printf("1. Receiving Dock\n");
     printf("2. Main Warehouse\n");
     printf("3. Secondary Stock\n");
@@ -28,7 +37,7 @@ void clear_input()
 // 1. Receiving Dock (Queue) - Themiya
 void receiving_dock_menu()
 {
-    printf("\n--- Receiving Dock ---\n");
+    printf("\n\n--- Receiving Dock ---\n");
     Queue dockQueue;
     initialize_queue(&dockQueue);
     int subChoice;
@@ -36,8 +45,8 @@ void receiving_dock_menu()
     char supplier[50], material[30], date[20], groupType;
     while (1)
     { // Added a loop so the user stays in the menu until they choose 'Back'
-        printf("1. Register New Truck (Enqueue)\n");
-        printf("2. Release Next Truck (Dequeue)\n");
+        printf("1. Register New Truck\n");
+        printf("2. Release Next Truck\n");
         printf("3. Display All Trucks in Dock\n");
         printf("4. Sort Queue by Priority\n");
         printf("5. Group Trucks (by Priority, Supplier, or Material)\n");
@@ -79,13 +88,13 @@ void receiving_dock_menu()
             dequeue_truck(&dockQueue);
             break;
         case 3:
-            printf("--- Current Dock Queue ---\n");
+            printf("Current Dock Queue\n");
             display_dock(&dockQueue);
             break;
         case 4:
-            printf("Sorting queue by priority (Bubble Sort)... \n");
+            printf("Sorting queue by priority... \n");
             sortByPriority(&dockQueue);
-            printf("Queue sorted.\n");
+            printf("Queue sorted.\n\n");
             display_dock(&dockQueue);
             break;
         case 5:
@@ -97,7 +106,7 @@ void receiving_dock_menu()
         case 6:
             return; // Exit back to main menu
         default:
-            printf("Invalid choice.\n");
+            printf("Invalid choice.\n\n");
             break;
         }
     }
@@ -111,7 +120,7 @@ void warehouse_menu()
     float stock;
     int con = 1;
 
-    printf("\n--- Main Warehouse ---\n");
+    printf("\n\n--- Main Warehouse ---\n\n");
     printf("1. Add Item\n");
     printf("2. Update Stock\n");
     printf("3. Delete Item\n");
@@ -173,7 +182,7 @@ void secondary_stock_menu()
     char mat[30];
     float stock;
 
-    printf("\n--- Secondary Stock ---\n");
+    printf("\n\n--- Secondary Stock ---\n\n");
     printf("1. Add Material\n");
     printf("2. Update Stock\n");
     printf("3. Delete Material\n");
@@ -225,7 +234,7 @@ void production_floor_menu()
 {
     int subChoice;
 
-    printf("\n--- Production Floor ---\n");
+    printf("\n\n--- Production Floor ---\n\n");
     printf("1. Insert Machine\n");
     printf("2. Delete by Position\n");
     printf("3. Delete by ID\n");
@@ -304,7 +313,7 @@ void production_floor_menu()
 void sewing_operator_menu()
 {
     int subChoice;
-    printf("\n--- Sewing Operator ---\n");
+    printf("\n\n--- Sewing Operator ---\n\n");
     printf("1. Add Operator\n");
     printf("2. Increase Pieces Completed\n");
     printf("3. Update Operator Details\n");
@@ -381,7 +390,7 @@ void sewing_operator_menu()
 void order_dispatch_menu()
 {
     int subChoice;
-    printf("\n--- Order Dispatch ---\n");
+    printf("\n\n--- Order Dispatch ---\n\n");
     printf("1. Add Order\n");
     printf("2. Update Order\n");
     printf("3. Delete Order\n");
@@ -438,7 +447,7 @@ void order_dispatch_menu()
 // 7. Security (Array) - Yasiru
 void security_menu()
 {
-    printf("\n--- Security ---\n");
+    printf("\n\n--- Security ---\n\n");
     Guard guard[20];
     int input = 0;
     int size = 0;

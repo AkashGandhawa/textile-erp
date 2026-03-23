@@ -1,6 +1,6 @@
 #include "factory.h"
 
-WarehouseItem *head = NULL;
+WarehouseItem *warehouse_head = NULL;
 
 // Function to add a new item to the warehouse
 void add_warehouse_item(int slot, char *mat, float stock)
@@ -9,21 +9,21 @@ void add_warehouse_item(int slot, char *mat, float stock)
     newNode->slot_no = slot;
     strcpy(newNode->material_type, mat);
     newNode->stock_kg = stock;
-    newNode->next = head;
+    newNode->next = warehouse_head;
     newNode->prev = NULL;
 
-    if (head != NULL)
+    if (warehouse_head != NULL)
     {
-        head->prev = newNode;
+        warehouse_head->prev = newNode;
     }
-    head = newNode;
+    warehouse_head = newNode;
     printf("Item added successfully to slot %d.\n", slot);
 }
 
 // Function to update stock in a specific slot
 void update_warehouse_item(int slot, float new_stock)
 {
-    WarehouseItem *curr = head;
+    WarehouseItem *curr = warehouse_head;
     while (curr != NULL)
     {
         if (curr->slot_no == slot)
@@ -47,7 +47,7 @@ void delete_warehouse_item(int slot, int *con)
         return;
     }
 
-    WarehouseItem *curr = head;
+    WarehouseItem *curr = warehouse_head;
     while (curr != NULL)
     {
         if (curr->slot_no == slot)
@@ -58,7 +58,7 @@ void delete_warehouse_item(int slot, int *con)
             }
             else
             {
-                head = curr->next;
+                warehouse_head = curr->next;
             }
             if (curr->next != NULL)
             {
@@ -76,7 +76,7 @@ void delete_warehouse_item(int slot, int *con)
 // Function to display all warehouse items
 void display_warehouse()
 {
-    WarehouseItem *curr = head;
+    WarehouseItem *curr = warehouse_head;
     if (curr == NULL)
     {
         printf("Warehouse is empty.\n");
@@ -95,7 +95,7 @@ void display_warehouse()
 // Function to search for a warehouse item by material type
 void search_warehouse_item(char *query)
 {
-    WarehouseItem *curr = head;
+    WarehouseItem *curr = warehouse_head;
     int found = 0;
 
     while (curr != NULL)
@@ -118,7 +118,7 @@ void search_warehouse_item(char *query)
 // Function to sort warehouse items by criteria and order
 void sort_warehouse_items(int criteria, int order)
 {
-    if (head == NULL || head->next == NULL)
+    if (warehouse_head == NULL || warehouse_head->next == NULL)
     {
         printf("Warehouse has too few items to sort.\n");
         return;
@@ -131,7 +131,7 @@ void sort_warehouse_items(int criteria, int order)
     do
     {
         swapped = 0;
-        ptr = head;
+        ptr = warehouse_head;
 
         while (ptr->next != last)
         {
