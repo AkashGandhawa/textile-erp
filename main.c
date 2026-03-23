@@ -473,7 +473,6 @@ void security_menu()
             return; // exit the function
         default:
             printf("Invalid input. Please try again.\n");
-            Sleep(500);
             break;
         }
     }
