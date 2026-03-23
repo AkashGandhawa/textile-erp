@@ -74,18 +74,29 @@ void update_sewing_operator_details(int operator_id, int new_machine_id, char *n
 void delete_sewing_operator(int operator_id)
 {
     SewingOperator *current = operator_head;
+    SewingOperator *prev = NULL; // manual tracker of the previous node
+
     while (current != NULL)
     {
         if (current->operator_id == operator_id)
         {
-            operator_head = current->next;
+            if (prev == NULL)
+            {
+                operator_head = current->next;
+            }
+            else
+            {
+                prev->next = current->next;
+            }
+
             free(current);
-            printf("The sewing operator with ID %d successfully deleted from the system", operator_id);
+            printf("The sewing operator with ID %d successfully deleted from the system\n", operator_id);
             return;
         }
-        current = current->next;
+        prev = current;          // move prev forward
+        current = current->next; // move current forward
     }
-    printf("Error: sewing operator %d not found", operator_id);
+    printf("Error: sewing operator %d not found\n", operator_id);
 }
 
 // Display all the sewing operators in the system

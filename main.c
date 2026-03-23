@@ -7,7 +7,7 @@
 Commands to compile and run:
 
 mkdir bin
-gcc main.c order_dispatch.c production_floor.c receiving_dock.c secondary_stock.c security_guard.c sewing_operator.c warehouse.c -o bin/textile_erp
+gcc main.c order_dispatch.c production_floor.c receiving_dock.c secondary_stock.c security_guard.c sewing_operator.c warehouse.c -o bin/textile-erp
 cd bin
 textile-erp
 */
@@ -45,7 +45,7 @@ void receiving_dock_menu()
     char supplier[50], material[30], date[20], groupType;
     while (1)
     { // Added a loop so the user stays in the menu until they choose 'Back'
-        printf("1. Register New Truck\n");
+        printf("\n1. Register New Truck\n");
         printf("2. Release Next Truck\n");
         printf("3. Display All Trucks in Dock\n");
         printf("4. Sort Queue by Priority\n");
@@ -98,7 +98,7 @@ void receiving_dock_menu()
             display_dock(&dockQueue);
             break;
         case 5:
-            printf("Group by Priority: ");
+            printf("Group by (p: Priority, s: Supplier, m: Material): ");
             clear_input();
             scanf("%c", &groupType);
             groupBy(&dockQueue, groupType);
@@ -454,12 +454,14 @@ void security_menu()
 
     while (1)
     {
-        printf("You're in security panel. What do you want to do?\n");
-        printf("Enter details of a new guard -> 1\n");
-        printf("Update guard details -> 2\n");
-        printf("Delete a guard -> 3\n");
-        printf("View all guard details -> 4\n");
-        printf("Exit -> -1\n");
+        printf("\nYou're in security panel. What do you want to do?\n");
+        printf("1. Add details of a new guard\n");
+        printf("2. Update details of an existing guard\n");
+        printf("3. Delete a guard\n");
+        printf("4. View all guard details\n");
+        printf("5. Sort guards by ID\n");
+        printf("0. Exit\n");
+        printf("Enter your choice (0-5): ");
         scanf("%d", &input);
 
         switch (input)
@@ -472,13 +474,17 @@ void security_menu()
             break;
         case 3:
             printf("Enter guard ID to delete: ");
-            scanf("%d", &input);
-            delete_guard(guard, &size, input);
+            int id;
+            scanf("%d", &id);
+            delete_guard(guard, &size, id);
             break;
         case 4:
             display_guard(guard, size);
             break;
-        case -1:
+        case 5:
+            quick_sort_by_id(guard, 0, size - 1);
+            break;
+        case 0:
             return; // exit the function
         default:
             printf("Invalid input. Please try again.\n");
@@ -494,7 +500,7 @@ int main()
     while (1)
     {
         show_menu();
-        printf("Enter choice: ");
+        printf("\nEnter choice: ");
         if (scanf("%d", &choice) != 1)
         {
             printf("Invalid input.\n");

@@ -170,6 +170,10 @@ void add_guard(Guard guard[], int *size);
 void update_guard(Guard guard[], int size);
 void delete_guard(Guard guard[], int *size, int id);
 void display_guard(Guard guard[], int size);
+void quick_sort_by_id(Guard guard[], int low, int high);
+// Recursive quick sort used instead of insertion sort
+// void insertion_sort_by_id(Guard guard[], int size);
+int partition_by_id(Guard guard[], int low, int high);
 
 // ==========================================
 // Other functions

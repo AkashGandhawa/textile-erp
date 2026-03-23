@@ -92,7 +92,7 @@ void display_orders()
     }
     while (current != NULL)
     {
-        printf("Order ID: %d, Receiver ID: %d, Priority: %d, Item Type: %c, Item Count: %d, Price: %.2f\n",
+        printf("Order ID: %d, Receiver ID: %d, Priority: %d, Item Type: %s, Item Count: %d, Price: %.2f\n",
                current->order_id, current->receiver_id, current->priority, current->item_type, current->item_count, current->price);
         current = current->next;
     }

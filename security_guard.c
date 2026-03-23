@@ -27,48 +27,6 @@ void delete_guard(Guard guard[], int *size, int id)
     printf("Guard with ID %d deleted.\n", id);
 }
 
-void guard(void)
-{
-    Guard guard[20];
-    int input = 0;
-    int size = 0;
-
-    while (1)
-    {
-        printf("You're in security panel. What do you want to do?\n");
-        printf("Enter details of a new guard -> 1\n");
-        printf("Update guard details -> 2\n");
-        printf("Delete a guard -> 3\n");
-        printf("View all guard details -> 4\n");
-        printf("Exit -> -1\n");
-        scanf("%d", &input);
-
-        switch (input)
-        {
-        case 1:
-            add_guard(guard, &size);
-            break;
-        case 2:
-            update_guard(guard, size);
-            break;
-        case 3:
-            printf("Enter guard ID to delete: ");
-            scanf("%d", &input);
-            delete_guard(guard, &size, input);
-            break;
-        case 4:
-            display_guard(guard, size);
-            break;
-        case -1:
-            return; // exit the function
-        default:
-            printf("Invalid input. Please try again.\n");
-            Sleep(500);
-            break;
-        }
-    }
-}
-
 // Function to add a new guard
 void add_guard(Guard guard[], int *size)
 {
@@ -157,5 +115,54 @@ void display_guard(Guard guard[], int size)
                    guard[i].patrol_point,
                    guard[i].shift);
         }
+    }
+}
+
+// Recursive quick sort used instead of insertion sort
+// void insertion_sort_by_id(Guard guard[], int size)
+// {
+//     for (int i = 1; i < size; i++)
+//     {
+//         Guard key = guard[i];
+//         int j = i - 1;
+//         while (j >= 0 && guard[j].guard_id > key.guard_id)
+//         {
+//             guard[j + 1] = guard[j];
+//             j--;
+//         }
+//         guard[j + 1] = key;
+//     }
+//     printf("Guards sorted by ID.\n");
+// }
+
+int partition_by_id(Guard guard[], int low, int high)
+{
+    int pivot = guard[high].guard_id;
+    int i = low - 1;
+    for (int j = low; j < high; j++)
+    {
+        if (guard[j].guard_id <= pivot)
+        {
+            i++;
+            // Swap guard[i] and guard[j]
+            Guard temp = guard[i];
+            guard[i] = guard[j];
+            guard[j] = temp;
+        }
+    }
+    // Swap guard[i+1] and guard[high]
+    Guard temp = guard[i + 1];
+    guard[i + 1] = guard[high];
+    guard[high] = temp;
+    return i + 1;
+}
+
+void quick_sort_by_id(Guard guard[], int low, int high)
+{
+    if (low < high)
+    {
+        int pi = partition_by_id(guard, low, high);
+        quick_sort_by_id(guard, low, pi - 1);
+        quick_sort_by_id(guard, pi + 1, high);
     }
 }

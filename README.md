@@ -10,12 +10,12 @@ Simple program that models a system of an textile manufacturing company to bette
 ### 1. Receiving Dock
 * Data Structure: **Queue**
 * Data Elements: `{truck_id, priority, supplier, material_type, date}`
-* Special Task: Sorted by `priority`
+* Special Task: Sort by `priority`, Group by `priority`, `supplier`, `material_type`
 
 ### 2. Main Warehouse
 * Data Structure: **Doubly Linked List**
 * Data Elements: `{slot_no, material_type, stock_kg}`
-* Special Task: Sorted by `slot_no`, `material_type`, or `stock_kg`
+* Special Task: Sort by `slot_no`, `material_type`, or `stock_kg`
 
 ### 3. Secondary Stock
 * Data Structure: **Doubly Linked List**
@@ -25,22 +25,22 @@ Simple program that models a system of an textile manufacturing company to bette
 ### 4. Production Floor
 * Data Structure: **Array**
 * Data Elements: `{machine_id, status, maintainance_req}`
-* Special Task: Sorted by `machine_id`
+* Special Task: Sort by `machine_id`
 
 ### 5. Sewing Operator
 * Data Structure: **Linked List**
 * Data Elements: `{operator_id, machine_id, piece_type, pieces_completed, salary}`
-* Special Task: Sorted by `pieces_completed`
+* Special Task: Sort by `pieces_completed`
 
 ### 6. Order Dispatch
 * Data Structure: **Linked List**
 * Data Elements: `{order_id, receiver, priority, item, item_count, price}`
-* Special Task: Sorted by `priority`
+* Special Task: Sort by `priority`
 
 ### 7. Security
 * Data Structure: **Array**
 * Data Elements: `{guard_id, is_active, patrol_point, shift}`
-* Special Task: Sorted by `guard_id`
+* Special Task: Sort by `guard_id`
 
 ## 👨‍💻 Commands to compile and run:
 

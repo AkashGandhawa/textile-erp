@@ -96,7 +96,7 @@ void display_dock(const Queue *queue)
 
 void sortByPriority(Queue *queue)
 {
-    //1 - High Priority, 10 - Low Priority
+    // 1 - High Priority, 10 - Low Priority
     if (isEmpty(queue) || queue->front == queue->rear)
     {
         return;
