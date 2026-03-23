@@ -74,12 +74,15 @@ void add_guard(Guard guard[], int *size)
 {
     printf("Enter guard ID: ");
     scanf("%d", &guard[*size].guard_id);
+    clear_input_buffer();
     printf("Enter active status (0-> not active, 1-> active): ");
     scanf("%d", (int *)&guard[*size].is_active);
     printf("Enter the patrol point: ");
     scanf("%29s", guard[*size].patrol_point);
+    clear_input_buffer();
     printf("Enter the shift time: ");
     scanf("%5s", guard[*size].shift);
+    clear_input_buffer();
     (*size)++;
     printf("Guard details saved successfully.\n");
 }
@@ -120,8 +123,10 @@ void update_guard(Guard guard[], int size)
                 scanf("%d", (int *)&guard[i].is_active);
                 printf("Enter new patrol point: ");
                 scanf("%29s", guard[i].patrol_point);
+                clear_input_buffer();
                 printf("Enter new shift time: ");
                 scanf("%5s", guard[i].shift);
+                clear_input_buffer();
                 break;
             default:
                 printf("Invalid choice.\n");
@@ -155,8 +160,7 @@ void display_guard(Guard guard[], int size)
     }
 }
 
-int main(void)
-{
+int main(void) {
     guard();
     return 0;
 }
