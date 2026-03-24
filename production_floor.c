@@ -43,6 +43,11 @@ int insert_at(Machine arr[], int position, int id, char status[20], int maintain
 
 int delete_by_position(Machine arr[], int position, int size)
 {
+    if (size ==0)
+    {
+        printf("No machines to delete.\n");
+        return;
+    }
     if (position > size || position < 1)
     {
         printf("Position out of range .");
@@ -60,6 +65,11 @@ int delete_by_position(Machine arr[], int position, int size)
 
 int delete_by_id(Machine arr[], int id, int size)
 {
+    if (size ==0)
+    {
+        printf("No machines to delete.\n");
+        return;
+    }
     for (int i = 0; i < size; i++)
     {
         if (id == arr[i].id)
@@ -80,6 +90,11 @@ int delete_by_id(Machine arr[], int id, int size)
 
 void traverse(Machine arr[], int size)
 {
+    if (size ==0)
+    {
+        printf("No machines to display.\n");
+        return;
+    }
     for (int i = 0; i < size; i++)
     {
 
@@ -99,6 +114,11 @@ void traverse(Machine arr[], int size)
 
 void update_by_position(Machine arr[], int position, int size, char status[20], int maintain)
 {
+    if (size ==0)
+    {
+        printf("No machines to update.\n");
+        return;
+    }
     if (position > size || position < 1)
     {
         printf("Position out of bounds");
@@ -110,6 +130,11 @@ void update_by_position(Machine arr[], int position, int size, char status[20], 
 
 void update_by_id(Machine arr[], int id, int size, char status[20], int maintain)
 {
+    if (size ==0)
+    {
+        printf("No machines to update.\n");
+        return;
+    }
     for (int i = 0; i < size; i++)
     {
         if (id == arr[i].id)
@@ -125,6 +150,11 @@ void update_by_id(Machine arr[], int id, int size, char status[20], int maintain
 
 void bubble_sort_by_id(Machine arr[], int size)
 {
+    if (size ==0)
+    {
+        printf("No machines to sort.\n");
+        return;
+    }
     int i, j;
     struct machine temp;
     bool swapped = false;
@@ -152,6 +182,11 @@ void bubble_sort_by_id(Machine arr[], int size)
 
 void show_maintenance(Machine arr[], int size)
 {
+    if (size ==0)
+    {
+        printf("No machines to display.\n");
+        return;
+    }
     int found = 0;
     for (int i = 0; i < size; i++)
     {
