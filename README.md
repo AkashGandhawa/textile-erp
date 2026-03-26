@@ -46,14 +46,11 @@ Simple program that models a system of an textile manufacturing company to bette
 
 ```bash
 mkdir bin
-```
-```bash
+
 gcc main.c order_dispatch.c production_floor.c receiving_dock.c secondary_stock.c security_guard.c sewing_operator.c warehouse.c -o bin/textile-erp
-```
-```bash
+
 cd bin
-```
-```bash
+
 textile-erp
 ```
 
