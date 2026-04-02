@@ -184,48 +184,147 @@ void secondary_stock_menu()
     char mat[30];
     float stock;
 
-    printf("\n\n--- Secondary Stock ---\n\n");
-    printf("1. Add Material\n");
-    printf("2. Update Stock\n");
-    printf("3. Delete Material\n");
-    printf("4. Display Inventory\n");
-    printf("5. Count Total Material Types\n");
-    printf("6. Find Max/Min Stock\n");
-    printf("7. Back\n");
-    printf("Choice: ");
-    scanf("%d", &subChoice);
-
-    switch (subChoice)
+    while (1)
     {
-    case 1:
-        printf("Enter Material Type (one word) and Stock(kg): ");
-        scanf("%s %f", mat, &stock);
-        add_secondary_item(mat, stock);
-        break;
-    case 2:
-        printf("Enter Material Type to Update and New Stock(kg): ");
-        scanf("%s %f", mat, &stock);
-        update_secondary_item(mat, stock);
-        break;
-    case 3:
-        printf("Enter Material Type to Delete: ");
-        scanf("%s", mat);
-        delete_secondary_item(mat);
-        break;
-    case 4:
-        display_secondary();
-        break;
-    case 5:
-        count_secondary_items();
-        break;
-    case 6:
-        find_max_min_stock();
-        break;
-    case 7:
-        return; // Back to main menu
-    default:
-        printf("Invalid choice. Please try again.\n");
-        break;
+        printf("\n\n--- Secondary Stock ---\n\n");
+        printf("1. Add Material\n");
+        printf("2. Update Stock\n");
+        printf("3. Delete Material\n");
+        printf("4. Display Inventory\n");
+        printf("5. Count Total Material Types\n");
+        printf("6. Find Max/Min Stock\n");
+        printf("7. Back\n");
+        printf("Choice: ");
+
+        if (scanf("%d", &subChoice) != 1) {
+            clear_input();
+            continue;
+        }
+
+        switch (subChoice)
+        {
+        case 1:
+            printf("Enter Material Type (one word) ");
+            scanf("%s", mat);
+            printf("Enter Stock(kg): ");
+            scanf("%f", &stock);
+
+            add_secondary_item(mat, stock);
+            break;
+        case 2:
+            printf("Enter Material Type to Update ");
+            scanf("%s", mat);
+            printf("Enter Material Stock(kg): ");
+            scanf("%f", &stock);
+            update_secondary_item(mat, stock);
+            break;
+        case 3:
+            printf("Enter Material Type to Delete: ");
+            scanf("%s", mat);
+            delete_secondary_item(mat);
+            break;
+        case 4:
+            display_secondary();
+            break;
+        case 5:
+            count_secondary_items();
+            break;
+        case 6:
+            find_max_min_stock();
+            break;
+        case 7:
+            return; // Back to main menu
+        default:
+            printf("Invalid choice. Please try again.\n");
+            break;
+        }
+    }
+}
+
+// 4. Production Floor (Array) - Dulaksha
+void production_floor_menu()
+{
+    int subChoice;
+
+    while (1)
+    {
+        printf("\n\n--- Production Floor ---\n\n");
+        printf("1. Insert Machine\n");
+        printf("2. Delete by Position\n");
+        printf("3. Delete by ID\n");
+        printf("4. Update by Position\n");
+        printf("5. Update by ID\n");
+        printf("6. Display Machines\n");
+        printf("7. Sort by ID\n");
+        printf("8. Show Maintenance Required\n");
+        printf("9. Back\n");
+        printf("Choice: ");
+
+        if (scanf("%d", &subChoice) != 1) {
+            clear_input();
+            continue;
+        }
+
+        switch (subChoice)
+        {
+        case 1:
+        {
+            int id, maintain, position;
+            char status[20];
+            printf("Enter Position, ID, Status, Maintenance(0/1): ");
+            scanf("%d %d %s %d", &position, &id, status, &maintain);
+            machine_size = insert_at(machines, position, id, status, maintain, machine_size, MAX_MACHINES);
+            break;
+        }
+        case 2:
+        {
+            int position;
+            printf("Enter Position: ");
+            scanf("%d", &position);
+            machine_size = delete_by_position(machines, position, machine_size);
+            break;
+        }
+        case 3:
+        {
+            int id;
+            printf("Enter ID: ");
+            scanf("%d", &id);
+            machine_size = delete_by_id(machines, id, machine_size);
+            break;
+        }
+        case 4:
+        {
+            int position, maintain;
+            char status[20];
+            printf("Enter Position, New Status, Maintenance(0/1): ");
+            scanf("%d %s %d", &position, status, &maintain);
+            update_by_position(machines, position, machine_size, status, maintain);
+            break;
+        }
+        case 5:
+        {
+            int id, maintain;
+            char status[20];
+            printf("Enter ID, New Status, Maintenance(0/1): ");
+            scanf("%d %s %d", &id, status, &maintain);
+            update_by_id(machines, id, machine_size, status, maintain);
+            break;
+        }
+        case 6:
+            traverse(machines, machine_size);
+            break;
+        case 7:
+            bubble_sort_by_id(machines, machine_size);
+            break;
+        case 8:
+            show_maintenance(machines, machine_size);
+            break;
+        case 9:
+            return; // Back to main menu
+        default:
+            printf("Invalid choice. Please try again.\n");
+            break;
+        }
     }
 }
 
