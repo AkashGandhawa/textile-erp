@@ -95,10 +95,10 @@ void traverse(Machine arr[], int size)
         printf("No machines to display.\n");
         return;
     }
+    printf("%d Machines in total.\n", size);
     for (int i = 0; i < size; i++)
     {
         
-        printf("%d Machines in total.\n", size);
         printf("Machine Id : %d\n", arr[i].id);
         printf("Machine State : %s\n", arr[i].status);
         if (arr[i].maintenance_req == 1)
